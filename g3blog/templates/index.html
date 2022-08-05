@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hechos con Alma</title>
+</head>
+<body>
+    <h1>Hechos con Alma</h1>
+    <section>
+        {% for elemento in posts %}
+            <article>
+                <h2>{{ elemento.titulo }}</h2>
+                <img src="{{ elemento.imagen.url }}" height="200" width="200">
+                <p>{{ elemento.textoLargo }}</p>
+            </article>
+        {% endfor %}
+    </section>
+</body>
+</html>
