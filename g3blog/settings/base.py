@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'info3gblog.herokuapp.com',
     'localhost',
+    'hechoscon-alma.herokuapp.com',
 ]
 
 
