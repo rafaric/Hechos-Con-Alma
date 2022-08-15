@@ -1,0 +1,32 @@
+from re import A
+from django import forms
+from .models import Post, Categoria
+
+choices = Categoria.objects.all().values_list('nombre', 'nombre')
+choice_list = []
+for item in choices:
+    choice_list.append(item)
+
+class PosteoForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['titulo', 'contenido', 'imagen','categoria', 'autor']
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+            
+            'contenido': forms.Textarea(attrs={'class':'form-control','cols': 80, 'rows': 5}),
+            'categoria': forms.Select(choices=choice_list, attrs={'class':'form-control'}),
+            'autor': forms.TextInput(attrs={'class': 'form-control','type': 'hidden', 'id': 'autor', 'value': ''}),
+            #'autor': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+class EdicionForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['titulo', 'contenido', 'imagen']
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+            'contenido': forms.Textarea(attrs={'class':'form-control','cols': 80, 'rows': 5}),
+            #'autor': forms.Select(attrs={'class': 'form-control'}),
+            'categoria': forms.Select(attrs={'class':'form-control'}),
+        }

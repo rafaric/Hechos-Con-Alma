@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}
+{{ cate }}
+{% endblock %}
+{% block content %}
+<h1 style="text-align:center;">Posteos - {{ cate }} </h1>
+<br/>
+{% if post_categorizados %}
+
+ {% for post in post_categorizados %}
+ <div class="card" style="width: 50%; margin: 0 auto; border-radius: 15px; box-shadow: 5px 10px 3px rgb(146, 182, 184);">
+    {% if post.imagen %}
+        
+            <img src="{{ post.imagen.url }}" class="card-img-top" width="250px" height="250px" style="border-radius: 15px">    
+        
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title"><a href="{% url 'categoria' post.categoria|slugify %}">[{{ post.categoria.title }}]</a> {{ post.titulo.title }} 
+        <br/><small>{{ post.autor.first_name }}
+            {% if user.is_authenticated %}
+                <a href="{% url 'editar_posteo' post.pk %}" style="font-size: 15px;">[Editar]</a>
+                <a href="{% url 'borrar_posteo' post.pk %}" style="font-size: 15px;">[Eliminar]</a>
+            {% endif %}
+        </small></h5>
+        <p class="card-text">{{ post.contenido | slice:":300" | safe }} - <a href="{% url 'detalle_posteo' post.pk%}">Leer Mas...</a></p>
+      <p class="card-text"><small class="text-muted">Fecha Publicación: {{ post.fecha }}</small></p>
+    </div>
+  </div>
+    <br/>
+    <br/>
+ {% endfor %}
+{% else %}
+    <h3 style="text-align:center;">No hay posteos para mostrar</h3>
+{% endif %}
+{% endblock %}
