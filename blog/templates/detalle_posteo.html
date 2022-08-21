@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bienvenida.html' %}
 
 {% block title %} {{ post.titulo }} {% endblock %}
 {% block content %}
@@ -13,7 +13,12 @@
 {% if post.imagen %}
 <img src="{{ post.imagen.url }}">
 {% endif %}
-{{ post.contenido | safe }}
+<div class="card-body ">    
+    <p class="text-justify">
+        {{ post.contenido | safe }}
+    </p>
+        
+</div>
 
 <br/><br/>
 {%if user.is_authenticated %}

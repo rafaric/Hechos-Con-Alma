@@ -55,12 +55,26 @@
           <h5 class="mb-4">No es por Vista, es por Fe</h5>
           <h5 class="mb-4">Esta es la seccion de Blog - Esperamos lo disfruten</h5>
           <a class="btn btn-outline-light btn-lg m-2" href=#posteos role="button"
-          rel="nofollow" >Ver los posts</a>
+          rel="nofollow" >Ver todos los posts</a>
+          <div class="dropdown justify-content-center" style="margin: 0 auto;">
+            <a class="btn btn-outline-dark btn-lg dropdown-toggle" style="margin: 0 auto;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categorias
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="{% url 'categoria' 'huerta' %}">Huerta</a>
+              <a class="dropdown-item" href="{% url 'categoria' 'general' %}">General</a>
+              <a class="dropdown-item" href="{% url 'categoria' 'duelo' %}">Acompañamiento</a>
+              <a class="dropdown-item" href="{% url 'categoria' 'radio' %}">Radio</a>
+              <a class="dropdown-item" href="{% url 'categoria' 'boy-scouts' %}">Boy Scouts</a>
+              <a class="dropdown-item" href="{% url 'categoria' 'merendero' %}">Merendero</a>
+            </div>
+          </div>
       </div>
       </div>
   </div>
   </div>
   <!-- Background image -->
+  
   <div class="row" id="posteos">
     {% for post in object_list %}
     <div class="column"> 

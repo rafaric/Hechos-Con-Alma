@@ -1,10 +1,122 @@
-{% extends 'base.html' %}
+{% extends 'bienvenida.html' %}
 {% load static %}
 {% block title%}
 {{ cate }}
 {% endblock %}
 {% block content %}
-<h1 style="text-align:center;">Posteos - {{ cate }} </h1>
+
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Float four columns side by side */
+  .column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row {margin: 0 -5px;}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+  #more-arrows {
+  width: 75px;
+  height: 65px;
+}
+#more-arrows:hover polygon {
+  fill: #FFF;
+  transition: all 0.2s ease-out;
+}
+#more-arrows:hover polygon.arrow-bottom {
+  transform: translateY(-18px);
+}
+#more-arrows:hover polygon.arrow-top {
+  transform: translateY(18px);
+}
+
+polygon {
+  fill: #FFF;
+  transition: all 0.2s ease-out;
+}
+polygon.arrow-middle {
+  opacity: 0.75;
+}
+polygon.arrow-top {
+  opacity: 0.5;
+}
+  </style>
+ <!-- Background image -->
+ <div id="intro" class="bg-image shadow-2-strong">
+  <div class="mask" style="background-color: #98dcdacc;">
+      <div class="container d-flex align-items-center justify-content-center text-center h-100">
+      <div class="text-white">
+        <div class="dropdown justify-content-center" style="margin: 0 auto;">
+          <a class="btn btn-outline-dark btn-lg dropdown-toggle" style="margin: 0 auto;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorias
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% url 'categoria' 'huerta' %}">Huerta</a>
+            <a class="dropdown-item" href="{% url 'categoria' 'general' %}">General</a>
+            <a class="dropdown-item" href="{% url 'categoria' 'duelo' %}">Acompañamiento</a>
+            <a class="dropdown-item" href="{% url 'categoria' 'radio' %}">Radio</a>
+            <a class="dropdown-item" href="{% url 'categoria' 'boy-scouts' %}">Boy Scouts</a>
+            <a class="dropdown-item" href="{% url 'categoria' 'merendero' %}">Merendero</a>
+          </div>
+          <h5 class="mb-4">Esta es la seccion de Blog - Esperamos lo disfruten</h5>
+          <h1 class="mb-3">{{ cate }}</h1>
+            <div>
+              <hr>
+              <p style="font-family: Roboto, sans-serif; font-size: large;">
+                {{ descri }}
+                
+              </p>
+            </div>
+            
+          </div>
+        </br>
+          <a  href=#encabezado role="button"rel="nofollow" >
+            <svg id="more-arrows">
+              <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
+              <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
+              <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+            </svg>
+            
+          </a>
+      </div>
+          
+      </div>
+  </div>
+  </div>
+<h1 id="encabezado"style="text-align:center;">Posteos - {{ cate }} </h1>
 <br/>
 {% if post_categorizados %}
 
