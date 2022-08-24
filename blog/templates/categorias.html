@@ -124,11 +124,12 @@ polygon.arrow-top {
 {% if post_categorizados %}
 
  {% for post in post_categorizados %}
- <div class="card" style="width: 50%; margin: 0 auto; border-radius: 15px; box-shadow: 5px 10px 3px rgb(146, 182, 184);">
+ <div class="card" style="max-width: 40%; min-height: 400px; margin: 0 auto; border-radius: 15px; box-shadow: 5px 10px 3px rgb(146, 182, 184);">
     {% if post.imagen %}
         
-            <img src="{{ post.imagen.url }}" class="card-img-top" width="250px" height="250px" style="border-radius: 15px">    
-        
+            <img src="{{ post.imagen.url }}" class="card-img-top" width="450px" height="250px" style="border-radius: 15px">    
+    {% else %}    
+            <img src="{% static 'blog/images/postdefault.jpg'%}" class="card-img-top" width="450px" height="250px" style="border-radius: 15px">    
     {% endif %}
     <div class="card-body">
       <h5 class="card-title"><a href="{% url 'categoria' post.categoria|slugify %}">[{{ post.categoria.title }}]</a> {{ post.titulo.title }} 
@@ -138,7 +139,7 @@ polygon.arrow-top {
                 <a href="{% url 'borrar_posteo' post.pk %}" style="font-size: 15px;">[Eliminar]</a>
             {% endif %}
         </small></h5>
-        <p class="card-text">{{ post.contenido | slice:":300" | safe }} - <a href="{% url 'detalle_posteo' post.pk%}">Leer Mas...</a></p>
+        <p class="card-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1500px;">{{ post.contenido | striptags|safe }} - </p><a href="{% url 'detalle_posteo' post.pk%}">Leer Mas...</a>
       <p class="card-text"><small class="text-muted">Fecha Publicación: {{ post.fecha }}</small></p>
     </div>
   </div>
