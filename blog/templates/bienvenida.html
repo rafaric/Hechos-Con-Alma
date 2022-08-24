@@ -24,7 +24,7 @@
             <ul class="sticky1">
                 <li>
                     <img src="{% static 'blog/images/facebook-circle.png'%}" width="32" height="32">
-                    <p><a href="https://www.facebook.com/hechosconalma" target="_blank">Visitanos en<br>Facebook</a></p>
+                    <p><a href="https://www.facebook.com/Hechos-con-Alma-106138340788976" target="_blank">Visitanos en<br>Facebook</a></p>
                 </li>
                 <li>
                     <img src="{% static 'blog/images/youtube-circle.png'%}" width="32" height="32">
@@ -122,6 +122,7 @@
                 </a>
                 </li>
                 {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'agregar_posteo' %}">Crear Post</a>
                 <a class="nav-link" href="{% url 'logout' %}"style="text-align: right">Logout</a>
                 {% endif %}
             </ul>
@@ -136,7 +137,7 @@
             <div class="container d-flex align-items-center justify-content-center text-center h-100">
             <div class="text-white">
                 <h1 class="mb-3">Hechos Con Alma</h1>
-                <h5 class="mb-4">No es por Vista, es por Fe</h5>
+                <h5 class="mb-4" id="lema">No es por Vista, es por Fe</h5>
                 <a class="btn btn-outline-light btn-lg m-2" href="{% url 'bienvenida' %}"  role="button"
                 rel="nofollow" >Comenzar Recorrido</a>
                 <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank"
@@ -195,19 +196,24 @@
             <div class="row">
                 {% for post in context %}
             <div class="col-lg-4 col-md-12 mb-4">
-                <div class="card">
+                <div class="card" style="min-height: 400px;">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img src="media/{{ post.imagen }}" class="img-fluid img-thumbnail" style="max-height: 200px;"/>
+                    {% if post.imagen %}
+                        <img src="media/{{ post.imagen }}" class="img-fluid img-thumbnail" style="max-height: 200px;"/>
+                    {% else %}
+                        <img src="{% static 'blog/images/postdefault.jpg'%}" class="img-fluid img-thumbnail" style="max-height: 200px;"/>
+                    {% endif %}    
                     <a href="#!">
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
+                    
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ post.titulo }}</h5>
-                    <p class="card-text">
-                    {{ post.contenido|safe|truncatewords:10 }}
+                    <p class="card-text" style="font-family: sans-serif; overflow: hidden;">
+                    {{ post.contenido|striptags }}
                     </p>
-                    <a href="{% url 'detalle_posteo' post.pk%}" class="btn btn-primary">Leer</a>
+                    <a href="{% url 'detalle_posteo' post.pk%}" class="btn btn-primary" style="position: absolute; bottom: 5px; left: 30%; right: 30%;">Leer</a>
                 </div>
                 </div>
             </div>
@@ -220,7 +226,7 @@
         <hr class="my-5" />
     
         <!--Section: Content-->
-        {{% if user.is_authenticated %}
+        {% if user.is_authenticated %}
         {% else %}
         <section class="mb-5" id="registro">
             <h4 class="mb-5 text-center"><strong>Registrate para recibir novedades</strong></h4>
@@ -251,11 +257,15 @@
                 </div>
     
                 <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-center mb-4">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" checked />
-                    <label class="form-check-label" for="form2Example3">
-                    Suscribete a nuestro boletín
+                <div class="form-check justify-content-center mb-5">
+                    <input class="form-check-input mb-2" type="checkbox" value="" id="form2Example3" checked />
+                    
+                    <label class="form-check-label me-2" for="form2Example3">
+                        Suscribete a nuestro boletín
                     </label>
+                    
+
+                    
                 </div>
     
                 <!-- Submit button -->

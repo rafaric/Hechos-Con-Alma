@@ -1,3 +1,19 @@
+@font-face {
+    font-family: 'beyond_the_mountainsregular';
+    src: url('beyond_the_mountains-webfont.woff2') format('woff2'),
+         url('beyond_the_mountains-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+#lema {
+    font-family: beyond_the_mountainsregular, Arial, Helvetica, sans-serif;
+    font-size: 2.0rem;
+}
+.mb-3 {
+    font-size: 3.5rem;
+}
+
 .sticky-container{
     padding:0px;
     margin:100px;

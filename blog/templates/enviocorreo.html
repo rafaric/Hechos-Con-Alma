@@ -1,0 +1,9 @@
+{% extends 'bienvenida.html' %}
+{% block title %} Envio de correos {% endblock %}
+{% block content %}
+    <h1 style="text-align:center;">Post creado exitosamente. </h1>
+    <h2 style="text-align:center;">Correos enviados correctamente</h2>
+    <div class="text-center">
+        <a  class="btn btn-primary" href="{% url 'home' %}" role="button" style="text-align: center;">Volver a la pagina principal</a>
+    </div>
+{% endblock %}

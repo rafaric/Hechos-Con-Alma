@@ -7,6 +7,12 @@ from .models import Categoria, Post
 from .forms import EdicionForm, PosteoForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+
 # Create your views here.
 #def home(request):
 #    return render(request, 'home.html', {})
@@ -60,11 +66,16 @@ class CrearPosteo(CreateView):
     template_name = 'agregar_post.html'
     #fields = '__all__'
     #fields = ['titulo', 'contenido']
+       
+    
+    def get_success_url(self) -> str:
+        return reverse_lazy('mail')
 
 class ActualizarPosteo(UpdateView):
     model = Post
     form_class = EdicionForm
     template_name = 'editar_post.html'
+    success_url: reverse_lazy("editar_posteo")
     #fields =['titulo', 'contenido']
 
 class BorrarPosteo(DeleteView):
@@ -85,3 +96,34 @@ def home(request):
     ordering = ['-fecha']
     context = model.objects.all().order_by('-fecha')[:3]
     return render(request, 'bienvenida.html', {'context':context})
+
+
+
+
+def enviarMail(request):
+    mail_content = '''
+    <h1>Hemos subido nuevo contenido a nuestra pagina web!! Vé a hecharle un vistazo!</h1>
+    <a href="https://www.google.com">Hechos con Alma</a>
+    '''
+
+    sender_address = 'hechosconalmablog@gmail.com'
+    sender_pass = 'rsooofxrvvuertno'
+    receiver_address = ['rafaelstrongoli@gmail.com', 'supercuentas2000@gmail.com','rubeneduardoescobar@gmail.com']  
+    for i in receiver_address:
+        # Setup the MIME
+        message = MIMEMultipart()
+        message['From'] = sender_address
+        message['To'] = i
+        message['Subject'] = 'Nuevo contenido en Hechos con Alma!'  # The subject line
+        # The body and the attachments for the mail
+        message.attach(MIMEText(mail_content, 'html'))
+        # Create SMTP session for sending the mail
+        session = smtplib.SMTP('smtp.gmail.com', 587)  # use gmail with port
+        session.starttls()  # enable security
+        session.login(sender_address, sender_pass)  # login with mail_id and password
+        text = message.as_string()
+        session.sendmail(sender_address, i, text)
+        session.quit()
+        print('Mail Sent')
+    return render(request, 'enviocorreo.html', {})
+

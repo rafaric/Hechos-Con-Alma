@@ -3,7 +3,7 @@
 {% block title %} {{ post.titulo }} {% endblock %}
 {% block content %}
 <div class="container">
-<h1>{{ post.titulo.title }}</h1><br/>
+<h1 style="margin-top: 15px" >{{ post.titulo.title }}</h1><br/>
 <small>Por: {{ post.autor.first_name }} - {{ post.fecha }} - 
     {%if user.is_authenticated %}
     <a href="{% url 'editar_posteo' post.pk %}" style="font-size: 15px;">[Editar]</a>
@@ -22,14 +22,14 @@
 
 <br/><br/>
 {%if user.is_authenticated %}
-<form action="{% url 'like_post' post.pk %}" method="POST">
+<form action="{% url 'like_post' post.pk %}" method="POST" style="margin-left: 10px;">
     {% csrf_token %}
-    <button class="btn btn-info btn-sm", type="submit", name="post_id", value=" {{ post.id }} "><p class="fa fa-thumbs-up">    {{ total_likes }} </p></button> <span>Like(s)</span>
+    <button class="btn btn-info btn-sm", type="submit", name="post_id", value=" {{ post.id }} "><p class="fa fa-thumbs-up" style="margin-top: 10px;">    {{ total_likes }} Likes</p></button> 
       
 </form>
 {% endif %}
 <a style= "margin: 10px;"href="{% url 'home'%}" class="btn btn-primary">Volver</a>
-<a style= "margin: 10px;"href="https://www.facebook.com/sharer/sharer.php?u=" class="btn btn-success">Compartir</a>
+<a style= "margin: 10px;"href="https://www.facebook.com/sharer/sharer.php?u=" class="btn btn-primary">Compartir</a>
 <div>
    
 {% endblock %}

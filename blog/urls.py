@@ -1,7 +1,7 @@
 
 from django.urls import path
 from . import views
-from .views import CrearCategoria, DetallePosteo, HomeView, CrearPosteo, ActualizarPosteo, BorrarPosteo, Categoria, Like
+from .views import CrearCategoria, DetallePosteo, HomeView, CrearPosteo, ActualizarPosteo, BorrarPosteo, Categoria, Like, enviarMail
 
 urlpatterns = [
     #path('', views.home, name='home'),
@@ -14,4 +14,5 @@ urlpatterns = [
     path("agregar_categoria/", CrearCategoria.as_view(), name="agregar_categoria"),
     path('categoria/<str:cate>/', Categoria, name='categoria'),
     path('like/<int:pk>/', Like, name='like_post'),
+    path('send_email/', views.enviarMail, name='mail'),
 ]

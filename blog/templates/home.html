@@ -78,7 +78,7 @@
   <div class="row" id="posteos">
     {% for post in object_list %}
     <div class="column"> 
-      <div class="card" style="border-radius: 15px; box-shadow: 5px 10px 3px rgb(146, 182, 184);">
+      <div class="card" style="border-radius: 15px; box-shadow: 5px 10px 3px rgb(146, 182, 184); margin-top: 10px;">
         {% if post.imagen %} 
                 <img src="{{ post.imagen.url }}" class="card-img-top" width="250px" height="250px" style="border-radius: 15px">    
         {% else %}    
@@ -92,7 +92,7 @@
                     <a href="{% url 'borrar_posteo' post.pk %}" style="font-size: 15px;">[Eliminar]</a>
                 {% endif %}
             </small></h5>
-            <p class="card-text">{{ post.contenido | slice:":100" | safe }} - <a href="{% url 'detalle_posteo' post.pk%}">Leer Mas...</a></p>
+            <p class="card-text">{{ post.contenido|striptags|truncatechars:100 }} - <a href="{% url 'detalle_posteo' post.pk%}">Leer Mas...</a></p>
           <p class="card-text"><small class="text-muted">Fecha Publicación: {{ post.fecha.date }}</small></p>
         </div>
       </div>
