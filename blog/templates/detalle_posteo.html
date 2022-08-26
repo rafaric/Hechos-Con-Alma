@@ -6,8 +6,8 @@
 <h1 style="margin-top: 15px" >{{ post.titulo.title }}</h1><br/>
 <small>Por: {{ post.autor.first_name }} - {{ post.fecha }} - 
     {%if user.is_authenticated %}
-    <a href="{% url 'editar_posteo' post.pk %}" style="font-size: 15px;">[Editar]</a>
-    <a href="{% url 'borrar_posteo' post.pk %}" style="font-size: 15px;">[Eliminar]</a></small>
+    <a class="fa fa-edit" href="{% url 'editar_posteo' post.pk %}" style="font-size: 15px;"></a>
+    <a class="fa fa-trash" href="{% url 'borrar_posteo' post.pk %}" style="font-size: 15px;"></a></small>
     {% endif %}
 <hr> <br/>
 {% if post.imagen %}

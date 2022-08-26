@@ -3,7 +3,17 @@
 {% block content %}
     <h1 style="text-align:center;">Post creado exitosamente. </h1>
     <h2 style="text-align:center;">Correos enviados correctamente</h2>
-    <div class="text-center">
-        <a  class="btn btn-primary" href="{% url 'home' %}" role="button" style="text-align: center;">Volver a la pagina principal</a>
-    </div>
+        <p style="text-align: center;">Se redigirá automaticamente o utilice el boton de abajo.</p>
+        <div id="counter">5</div>
+        <p style="text-align: center;"> <a  class="btn btn-primary" href="{% url 'bienvenida' %}" role="button" style="text-align: center;">Volver a la pagina principal</a></p>
+        <script>
+            setInterval(function() {
+                var div = document.querySelector("#counter");
+                var count = div.textContent * 1 - 1;
+                div.textContent = count;
+                if (count <= 0) {
+                    window.location="{% url 'bienvenida' %}"
+                }
+                }, 5000);
+        </script>
 {% endblock %}

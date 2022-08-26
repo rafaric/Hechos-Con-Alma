@@ -15,8 +15,8 @@
         <!-- MDB -->
         <link rel="stylesheet" href="{% static 'blog/css/mdb.min.css' %}" />
         <!-- Custom styles -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'blog/css/socialmedia.css' %}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     </head>
     <body>
         <!--Redes sociales pegatina-->
@@ -71,80 +71,72 @@
     
         <!-- Navbar -->
         <!-- <nav class="navbar sticky-top navbar-expand-lg navbar-light d-none d-lg-block shadow-5-stron" style="z-index: 8000;"> -->
-            <nav class="navbar sticky-top navbar-expand-lg navbar-dark " style="background-color: rgba(115, 155, 160, 0.502); ">
-                <div class="container-fluid">
-                    <!-- Navbar brand -->
-                    <a class="navbar-brand nav-link" target="" href="{% url 'home' %}">
-                    <strong>HcA</strong>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
-                    aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarExample01">
-                    
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{% url 'bienvenida' %}" rel="nofollow">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="" rel="nofollow">Quienes Somos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="" rel="nofollow">Proyectos</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="https://mdbootstrap.com/docs/standard/" target="_blank">Deseas Ayudar?</a>
-                        </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Secciones
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{% url 'categoria' 'huerta' %}">Huerta</a>
-                            <a class="dropdown-item" href="{% url 'categoria' 'general' %}">General</a>
-                            <a class="dropdown-item" href="{% url 'categoria' 'duelo' %}">Acompañamiento</a>
-                            <a class="dropdown-item" href="{% url 'categoria' 'radio' %}">Radio</a>
-                            <a class="dropdown-item" href="{% url 'categoria' 'boy-scouts' %}">Boy Scouts</a>
-                            <a class="dropdown-item" href="{% url 'categoria' 'merendero' %}">Merendero</a>
-                        </ul>
-                      </li>
-                    </ul>
-
-                    <ul class="navbar-nav d-flex flex-row ms-auto">
-                        <!-- Icons -->
-                        <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link" href="https://www.youtube.com/channel/UClJ5l7IdTudvXs01MM161OA" rel="nofollow"
-                            target="_blank">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        </li>
-                        <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link" href="https://www.facebook.com/Hechos-con-Alma-106138340788976/" rel="nofollow" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        </li>
-                        <!-- <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link" href="https://twitter.com/MDBootstrap" rel="nofollow" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        </li> -->
-                        <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link" href="https://www.instagram.com/hechocon_alma/" rel="nofollow" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        </li>
-                        {% if user.is_authenticated %}
-                        <a class="nav-link" href="{% url 'agregar_posteo' %}">Crear Post</a>
-                        <a class="nav-link" href="{% url 'logout' %}"style="text-align: right">Logout</a>
-                        {% endif %}
-                    </ul>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark " style="background-color: rgba(115, 155, 160, 0.502); ">
+            <div class="container-fluid">
+            <!-- Navbar brand -->
+            <a class="navbar-brand nav-link" target="" href="{% url 'home' %}">
+            <strong>HcA</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+            aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarExample01">
+            
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'bienvenida' %}" rel="nofollow">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" rel="nofollow">Quienes Somos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" rel="nofollow">Proyectos</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="https://mdbootstrap.com/docs/standard/" target="_blank">Deseas Ayudar?</a>
+                </li>
+                <div class="dropdown1">
+                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                    <div id="myDropdown" class="dropdown-content1">
+                      <a href="#home">Home</a>
+                      <a href="#about">About</a>
+                      <a href="#contact">Contact</a>
+                    </div>
                   </div>
-
-                </div>
-
-              </nav>
-              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+            </ul>
+    
+            <ul class="navbar-nav ml-auto">
+                <!-- Icons -->
+                <li class="nav-item me-3 me-lg-0">
+                <a class="nav-link" href="https://www.youtube.com/channel/UClJ5l7IdTudvXs01MM161OA" rel="nofollow"
+                    target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                </li>
+                <li class="nav-item me-3 me-lg-0">
+                <a class="nav-link" href="https://www.facebook.com/Hechos-con-Alma-106138340788976/" rel="nofollow" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                </li>
+                <!-- <li class="nav-item me-3 me-lg-0">
+                <a class="nav-link" href="https://twitter.com/MDBootstrap" rel="nofollow" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                </li> -->
+                <li class="nav-item me-3 me-lg-0">
+                <a class="nav-link" href="https://www.instagram.com/hechocon_alma/" rel="nofollow" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                </li>
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'agregar_posteo' %}">Crear Post</a>
+                <a class="nav-link" href="{% url 'logout' %}"style="text-align: right">Logout</a>
+                {% endif %}
+            </ul>
+            </div>
+        </div>
+        </nav>
         <!-- Navbar -->
         {% block content %}
         <!-- Background image -->
@@ -301,18 +293,20 @@
     <!--Main layout-->
     
     <!--Footer-->
-    <footer class="bg-light text-lg-start" >
+    <footer class="bg-light text-lg-start">
         <div class="py-4 text-center">
         <a role="button" class="btn btn-primary btn-sm m-2 "
             href=#intro rel="nofollow" >
             Ir arriba
         </a>
-       
+        <a role="button" class="btn btn-primary btn-sm m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank">
+             
+        </a>
         </div>
     
         <hr class="m-0" />
     
-        <div class="text-center py-4 align-items-center" >
+        <div class="text-center py-4 align-items-center">
         <p>Síguenos en redes sociales</p>
         <a href="https://www.youtube.com/channel/UClJ5l7IdTudvXs01MM161OA/featured" class="btn btn-primary m-1" role="button"
             rel="nofollow" target="_blank">
@@ -333,45 +327,48 @@
         </div>
     
         <!-- Copyright -->
-        <!-- <div class="col-md-12" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 Copyright:
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
         <a class="text-dark" href="">HcA - Hechos con Alma</a>
         {% if user.is_authenticated %}
         {% else %}
-            <div class="text-align"> 
-                <a class="nav-link" href="{% url 'registro' %}" style="text-align: right;">Registrarse</a>
-                <a class="nav-link" href="{% url 'login' %}"style="text-align: right">Login</a>
-            </div> 
+        <div style="align-items: right;"> 
+            <a class="nav-link" href="{% url 'registro' %}" style="text-align: right;">Registrarse</a>
+            <a class="nav-link" href="{% url 'login' %}"style="text-align: right">Login</a>
+        </div> 
         {% endif %}
         </div>
-         -->
-         <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-              <p class="col-md-4 mb-0 text-muted">&copy; 2022 HcA - Hechos con Alma</p>
-          
-              
-          
-              <div class="nav col-md-4 justify-content-end">
-                {% if user.is_authenticated %}
-                {% else %}
-                    <div> 
-                        <a href="{% url 'registro' %}">Registrarse</a>
-                        /
-                        <a href="{% url 'login' %}">Login</a>
-                    
-                    </div> 
-                {% endif %}
-              </div>
-            </footer>
-          </div>
+        <script>
+            /* When the user clicks on the button, 
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+              document.getElementById("myDropdown").classList.toggle("show");
+            }
+            
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+              if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
+              }
+            }
+            </script>
         <!-- Copyright -->
     </footer>
     <!--Footer-->
         <!-- MDB -->
-        <script type="text/javascript" src="{% static 'blog/js/mdb.min.js'%}"></script>
+        <script type="text/javascript" src="{% static 'blog/js/mdb.min.js'%}">
+        </script>
         <!-- Custom scripts -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="{% static 'blog/js/menu.js' %}></script>
     </body>
     </html>

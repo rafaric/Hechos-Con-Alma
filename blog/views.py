@@ -108,7 +108,7 @@ def enviarMail(request):
 
     sender_address = 'hechosconalmablog@gmail.com'
     sender_pass = 'rsooofxrvvuertno'
-    receiver_address = ['rafaelstrongoli@gmail.com', 'supercuentas2000@gmail.com','rubeneduardoescobar@gmail.com']  
+    receiver_address = ['rafaelstrongoli@gmil.com', 'supercuentas2000@gmil.com','rubeneduardoescobar@gmil.com']  
     for i in receiver_address:
         # Setup the MIME
         message = MIMEMultipart()

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bienvenida.html' %}
 {% block title %} Borrar posteo!!! {% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
@@ -11,7 +11,7 @@
     <div style="text-align: center;"><h3>Borrando Posteo: {{ post.titulo }}</h3></div>
     <div style="text-align: center;"><strong>¿Esta seguro de borrarlo?</strong></div>
     <br/><br/><br/>
-    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <p style="text-align:center"><button type="submit" class="btn btn-danger">Eliminar</button></p>
 </form>
 </div>
 {% else %}
