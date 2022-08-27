@@ -107,6 +107,7 @@
                             <a class="dropdown-item" href="{% url 'categoria' 'radio' %}">Radio</a>
                             <a class="dropdown-item" href="{% url 'categoria' 'boy-scouts' %}">Boy Scouts</a>
                             <a class="dropdown-item" href="{% url 'categoria' 'merendero' %}">Merendero</a>
+                            <a class="dropdown-item" href="{% url 'tienda' %}">Productos de Limpieza</a>
                         </ul>
                       </li>
                     </ul>
@@ -156,7 +157,7 @@
                 <h5 class="mb-4" id="lema">No es por Vista, es por Fe</h5>
                 <a class="btn btn-outline-light btn-lg m-2" href="{% url 'bienvenida' %}"  role="button"
                 rel="nofollow" >Comenzar Recorrido</a>
-                <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank"
+                <a class="btn btn-outline-light btn-lg m-2" href="{% url 'tienda' %}"
                 role="button">Visitar tienda de Productos</a>
             </div>
             </div>

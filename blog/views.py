@@ -133,3 +133,5 @@ def proyectos(request):
     return render(request, 'proyectos.html', {})
 def ayudas(request):
     return render(request, 'donaciones.html', {})
+def tienda(request):
+    return render(request, 'tienda.html', {})
