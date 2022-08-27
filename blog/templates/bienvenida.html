@@ -91,16 +91,16 @@
                             <a class="nav-link" href="{% url 'somos' %}" rel="nofollow">Quienes Somos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="" rel="nofollow">Proyectos</a>
+                            <a class="nav-link" href="{% url 'proyectos' %}" rel="nofollow">Proyectos</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="https://mdbootstrap.com/docs/standard/" target="_blank">Deseas Ayudar?</a>
+                        <a class="nav-link" href="{% url 'ayudas' %}" rel="nofollow">Deseas Ayudar?</a>
                         </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Secciones
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: rgba(175, 214, 213,.8);">
                             <a class="dropdown-item" href="{% url 'categoria' 'huerta' %}">Huerta</a>
                             <a class="dropdown-item" href="{% url 'categoria' 'general' %}">General</a>
                             <a class="dropdown-item" href="{% url 'categoria' 'duelo' %}">Acompañamiento</a>

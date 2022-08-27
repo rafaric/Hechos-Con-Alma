@@ -129,3 +129,7 @@ def enviarMail(request):
 
 def quienessomos(request):
     return render(request, 'quienessomos.html', {})
+def proyectos(request):
+    return render(request, 'proyectos.html', {})
+def ayudas(request):
+    return render(request, 'donaciones.html', {})
