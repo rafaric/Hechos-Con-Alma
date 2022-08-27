@@ -127,3 +127,5 @@ def enviarMail(request):
         print('Mail Sent')
     return render(request, 'enviocorreo.html', {})
 
+def quienessomos(request):
+    return render(request, 'quienessomos.html', {})

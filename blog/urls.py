@@ -15,4 +15,5 @@ urlpatterns = [
     path('categoria/<str:cate>/', Categoria, name='categoria'),
     path('like/<int:pk>/', Like, name='like_post'),
     path('send_email/', views.enviarMail, name='mail'),
+    path('quienessomos/', views.quienessomos, name='somos'),
 ]
