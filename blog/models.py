@@ -33,3 +33,11 @@ class Post(models.Model):
 
     def total_likes(self):
         return self.likes.count()
+
+class Suscriptores(models.Model):
+    apellido = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)    
+    correo = models.EmailField()
+
+    def _str_(self):
+        return self.apellido + ', ' + self.nombre + ' (' + self.correo +')'

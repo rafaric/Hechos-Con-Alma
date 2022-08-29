@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-
+#from .tasks import emailsendertask
 
 
 # Create your views here.
@@ -99,7 +99,6 @@ def home(request):
 
 
 
-
 def enviarMail(request):
     mail_content = '''
     <h1>Hemos subido nuevo contenido a nuestra pagina web!! Vé a hecharle un vistazo!</h1>
@@ -132,6 +131,27 @@ def quienessomos(request):
 def proyectos(request):
     return render(request, 'proyectos.html', {})
 def ayudas(request):
-    return render(request, 'donaciones.html', {})
+    return render(request, 'voluntariado.html', {})
 def tienda(request):
     return render(request, 'tienda.html', {})
+def duelo(request):
+    return render(request, 'duelo.html', {})
+def huerta(request):
+    return render(request, 'huerta.html', {})
+def merendero(request):
+    return render(request, 'merendero.html', {})
+def objetivos(request):
+    return render(request, 'objetivos.html', {})
+def radio(request):
+    return render(request, 'radio.html', {})
+
+""" 
+def sendMail.delay(request):
+    #----------direcciones de prueba-----
+    receivers_addresses = ['rafaelstrongoli@gmail.com', 'supercuentas2000@gmail.com','rubeneduardoescobar@gmail.com']  
+    #------------fin direcciones de prueba----
+
+    for i in receivers_addresses:
+        emailsendertask(i)
+        print('Mail Sent')
+    return render(request, 'enviocorreo.html', {}) """

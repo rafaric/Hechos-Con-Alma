@@ -19,4 +19,9 @@ urlpatterns = [
     path('proyectos/', views.proyectos, name='proyectos'),
     path('ayudas/', views.ayudas, name='ayudas'),
     path('tienda/', views.tienda, name='tienda'),
+    path('duelo/', views.duelo, name='duelo'),
+    path('huerta/', views.huerta, name='huerta'),
+    path('merendero/', views.merendero, name='merendero'),
+    path('objetivos/', views.objetivos, name='objetivos'),
+    path('radio/', views.radio, name='radio'),
 ]

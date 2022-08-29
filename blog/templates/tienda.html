@@ -1,6 +1,17 @@
 {% extends 'bienvenida.html' %}
 {% load static %}
 {% block content %}
-Tienda
-
+<div class="container">
+    <h1 style="text-align: center;"> PRODUCTOS DE LIMPIEZA </h1>
+    <br>
+    <h2> Una de nuestras fuentes de ingreso es la venta de productos de limpieza de gran calidad y a muy buen precio</h2>
+    <p> Te compartimos nuestro listado de productos y <a href="https://api.whatsapp.com/send?phone=543725455384">contactanos</a> para mayor información</p>
+    <div align="center">
+        <img src="{% static '/blog/images/tienda.jpeg' %}" width="350"/>
+        <img src="{% static '/blog/images/lista_prod.jpeg' %}" width="550"/>
+    </div>
+    <br>
+    <div align="center">
+        <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3569.4784280504414!2d-59.345726685853684!3d-26.53689408402388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x944389c820eb3581%3A0x7510206dbb8e49a!2sUruguay%20360%2C%20Gral.%20Jos%C3%A9%20de%20San%20Mart%C3%ADn%2C%20Chaco!5e0!3m2!1ses-419!2sar!4v1661732964192!5m2!1ses-419!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 {% endblock %}
