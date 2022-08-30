@@ -98,7 +98,7 @@
                             <a class="nav-link" href="{% url 'proyectos' %}" rel="nofollow">Proyectos</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{% url 'ayudas' %}" rel="nofollow">Deseas Ayudar?</a>
+                        <a class="nav-link" href="{% url 'ayudas' %}" rel="nofollow">¿Deseas Ayudar?</a>
                         </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -106,12 +106,13 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: rgba(175, 214, 213,.8);">
                             <a class="dropdown-item" href="{% url 'huerta' %}">Huerta</a>
-                            <a class="dropdown-item" href="{% url 'categoria' 'general' %}">General</a>
                             <a class="dropdown-item" href="{% url 'duelo' %}">Acompañamiento</a>
-                            <a class="dropdown-item" href="{% url  'radio' %}">Radio</a>
-                            <a class="dropdown-item" href="{% url 'categoria' 'boy-scouts' %}">Boy Scouts</a>
+                            <a class="dropdown-item" href="{% url  'radio' %}">Radio</a>  
                             <a class="dropdown-item" href="{% url 'merendero' %}">Merendero</a>
                             <a class="dropdown-item" href="{% url 'tienda' %}">Productos de Limpieza</a>
+                            <a class="dropdown-item" href="{% url 'religion' %}">No es por vista es por fe</a>
+                            <a class="dropdown-item" href="{% url 'categoria' 'boy-scouts' %}">Boy Scouts</a>
+                            <a class="dropdown-item" href="{% url 'categoria' 'general' %}">General</a>
                         </ul>
                       </li>
                     </ul>
@@ -244,28 +245,32 @@
         {% endblock %}
         <!--Section: Content-->
     
-        <hr class="my-5" />
+
     
         <!--Section: Content-->
         {% if user.is_authenticated %}
         {% else %}
-        <section class="mb-5" id="registro">
+        <section class="mb-5" id="registro" style="background-color: whitesmoke;">
+            <hr class="my-5" />
             <h4 class="mb-5 text-center"><strong>Registrate para recibir novedades</strong></h4>
     
             <div class="row d-flex justify-content-center">
             <div class="col-md-6">
-                <form>
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                
                 <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div class="row mb-4">
                     <div class="col">
                     <div class="form-outline">
-                        <input type="text" id="form3Example1" class="form-control" />
+                        <input type="text" id="form3Example1" class="form-control" name="{{ form.nombre.name }}">
                         <label class="form-label" for="form3Example1">Nombre</label>
                     </div>
                     </div>
                     <div class="col">
                     <div class="form-outline">
-                        <input type="text" id="form3Example2" class="form-control" />
+                        <input type="text" id="form3Example2" class="form-control" name="{{ form.apellido.name }}">
                         <label class="form-label" for="form3Example2">Apellido</label>
                     </div>
                     </div>
@@ -273,7 +278,7 @@
     
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <input type="email" id="form3Example3" class="form-control" />
+                    <input type="email" id="form3Example3" class="form-control" name="{{ form.correo.name }}">
                     <label class="form-label" for="form3Example3">Email</label>
                 </div>
     
@@ -370,7 +375,7 @@
                 {% if user.is_authenticated %}
                 {% else %}
                     <div> 
-                        
+                        <a href="{% url 'registro' %}">Registrarse</a>
                         /
                         <a href="{% url 'login' %}">Login</a>
                     

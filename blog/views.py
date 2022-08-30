@@ -1,15 +1,17 @@
 
-from urllib import request
-from django.shortcuts import render, get_object_or_404
+
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from . import models
-from .models import Categoria, Post
-from .forms import EdicionForm, PosteoForm
+from .models import Categoria, Post, Suscriptores
+from .forms import EdicionForm, PosteoForm, suscripcion
 from django.urls import reverse_lazy, reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from django.contrib import messages
+import environ
 #from .tasks import emailsendertask
 
 
@@ -18,22 +20,20 @@ from email.mime.multipart import MIMEMultipart
 #    return render(request, 'home.html', {})
 
 
-def Like(request, pk):
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    post.likes.add(request.user)
-    return HttpResponseRedirect(reverse('detalle_posteo', args=[str(pk)]))
+
+
 
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
     ordering = ['-fecha']
     #context_object_name = 'posts'
-
     def get_context_data(self, *args, **kwargs):
         cat_menu = models.Categoria.objects.all()
         context = super(HomeView, self).get_context_data(*args, **kwargs)
         context['cat_menu'] = cat_menu
         return context
+    
 
 
 def Categoria(request, cate):
@@ -50,14 +50,14 @@ class DetallePosteo(DetailView):
     model = Post
     template_name = 'detalle_posteo.html'
     #context_object_name = 'post'
-
+    
     def get_context_data(self, *args, **kwargs):
         cat_menu = models.Categoria.objects.all()
-        stuff = get_object_or_404(Post, id=self.kwargs['pk'])
-        total_likes =  stuff.total_likes()
+        
+        
         context = super(DetallePosteo, self).get_context_data(*args, **kwargs)
         context['cat_menu'] = cat_menu
-        context['total_likes'] = total_likes
+        
         return context
 
 class CrearPosteo(CreateView):
@@ -93,25 +93,70 @@ class CrearCategoria(CreateView):
 
 def home(request):
     model = Post
-    ordering = ['-fecha']
     context = model.objects.all().order_by('-fecha')[:3]
-    return render(request, 'bienvenida.html', {'context':context})
+    form = suscripcion()
+    if request.method == 'POST':
+        #print(request.POST)
+        form = suscripcion(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('home'))
+    return render(request, 'bienvenida.html', {'context':context, 'form':form})
 
 
 
 def enviarMail(request):
+    env = environ.Env()
+    environ.Env.read_env()
+    recipient = Suscriptores.objects.all()
+    receiver_address = []
+    for i in recipient:
+        receiver_address.append(i.correo)
+    
     mail_content = '''
-    <h1>Hemos subido nuevo contenido a nuestra pagina web!! Vé a hecharle un vistazo!</h1>
-    <a href="https://www.google.com">Hechos con Alma</a>
+        <div id="intro" class="bg-image shadow-2-strong">
+            <div class="mask" style="background-color: #98dcdacc;">
+                <div class="container d-flex align-items-center justify-content-center text-center h-100">
+                <div class="text-white">
+                    <h1 class="mb-3" style="text-align: center;">Hechos Con Alma</h1>
+                    <h3 class="mb-4" id="lema" style="text-align: center;">No es por Vista, es por Fe</h3>
+                    
+                </div>
+                </div>
+            </div>
+            </div>
+            <!-- Background image -->
+
+        <!--Main Navigation-->
+
+        <!--Main layout-->
+
+
+            
+            
+            <section>
+                <div class="row">
+                <div class="col-md-4 gx-5 mb-4">
+                    <p >
+                        <div class="mask" style="text-align: center; background-color: hwb(182 61% 16% / 0.39); font-size: 26;">¡Hemos subido nuevo contenido
+                        a nuestra página web!! ¡Vé a echarle un vistazo haciendo click en nuestro logo!</div>
+                    </p>
+                    
+                    </div>
+                </div>
+                </div>
+                <div style="text-align: center;">
+                    <a style="margin-left: auto; margin-right: auto;" href="http://www.google.com" target="_blank"><img src="https://i.postimg.cc/9FnVBbSJ/Hc-A-sin-fondo.png" alt=""></a>
+                </div>
+            </section>
     '''
 
-    sender_address = 'hechosconalmablog@gmail.com'
-    sender_pass = 'rsooofxrvvuertno'
-    receiver_address = ['rafaelstrongoli@gmil.com', 'supercuentas2000@gmil.com','rubeneduardoescobar@gmil.com']  
+    #sender_address = 'hechosconalmablog@gmail.com'
+    #sender_pass = 'rsooofxrvvuertno'  
     for i in receiver_address:
         # Setup the MIME
         message = MIMEMultipart()
-        message['From'] = sender_address
+        message['From'] = env("MAILFROM")
         message['To'] = i
         message['Subject'] = 'Nuevo contenido en Hechos con Alma!'  # The subject line
         # The body and the attachments for the mail
@@ -119,9 +164,9 @@ def enviarMail(request):
         # Create SMTP session for sending the mail
         session = smtplib.SMTP('smtp.gmail.com', 587)  # use gmail with port
         session.starttls()  # enable security
-        session.login(sender_address, sender_pass)  # login with mail_id and password
+        session.login(env("MAILFROM"), env("MAILPASS"))  # login with mail_id and password
         text = message.as_string()
-        session.sendmail(sender_address, i, text)
+        session.sendmail(env("MAILFROM"), i, text)
         session.quit()
         print('Mail Sent')
     return render(request, 'enviocorreo.html', {})
@@ -144,14 +189,22 @@ def objetivos(request):
     return render(request, 'objetivos.html', {})
 def radio(request):
     return render(request, 'radio.html', {})
+def religion(request):
+    return render(request, 'religion.html', {})
 
-""" 
-def sendMail.delay(request):
-    #----------direcciones de prueba-----
-    receivers_addresses = ['rafaelstrongoli@gmail.com', 'supercuentas2000@gmail.com','rubeneduardoescobar@gmail.com']  
-    #------------fin direcciones de prueba----
+def suscribir(request):
+    form = suscripcion()
+    return render(request, 'bienvenida.html', {'form':form})
 
-    for i in receivers_addresses:
-        emailsendertask(i)
-        print('Mail Sent')
-    return render(request, 'enviocorreo.html', {}) """
+def post_likes(request, pk):
+    model = Post
+    post = model.objects.get(pk=pk)
+    identify_post = 'has_liked '+str(post.id)
+    if request.session.get(identify_post, False):
+        messages.success(request, 'Ya has dado me gusta')
+        return redirect('detalle_posteo', pk)
+    post.likes = post.likes + 1
+    post.save()
+    request.session[identify_post] = True
+    messages.success(request, 'Gracias por dar Me Gusta!')
+    return redirect('detalle_posteo', pk)

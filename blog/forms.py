@@ -1,6 +1,9 @@
 from re import A
+from tkinter import Widget
 from django import forms
-from .models import Post, Categoria
+
+
+from .models import Post, Categoria, Suscriptores
 
 choices = Categoria.objects.all().values_list('nombre', 'nombre')
 choice_list = []
@@ -29,4 +32,14 @@ class EdicionForm(forms.ModelForm):
             'contenido': forms.Textarea(attrs={'class':'form-control','cols': 80, 'rows': 5}),
             #'autor': forms.Select(attrs={'class': 'form-control'}),
             'categoria': forms.Select(attrs={'class':'form-control'}),
+        }
+        
+class suscripcion(forms.ModelForm):
+    class Meta:
+        model = Suscriptores
+        fields= ['nombre','apellido','correo']
+        Widget = {
+            'nombre': forms.TextInput(),
+            'apellido': forms.TextInput(),
+            'correo': forms.EmailInput(),
         }

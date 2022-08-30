@@ -1,7 +1,8 @@
 
 from django.urls import path
 from . import views
-from .views import CrearCategoria, DetallePosteo, HomeView, CrearPosteo, ActualizarPosteo, BorrarPosteo, Categoria, Like
+
+from .views import CrearCategoria, DetallePosteo, HomeView, CrearPosteo, ActualizarPosteo, BorrarPosteo, Categoria, post_likes
 
 urlpatterns = [
     #path('', views.home, name='home'),
@@ -13,7 +14,7 @@ urlpatterns = [
     path("posteo/<int:pk>/borrar/", BorrarPosteo.as_view(), name="borrar_posteo"),
     path("agregar_categoria/", CrearCategoria.as_view(), name="agregar_categoria"),
     path('categoria/<str:cate>/', Categoria, name='categoria'),
-    path('like/<int:pk>/', Like, name='like_post'),
+    #path('like/<int:pk>/', Like, name='like_post'),
     path('send_email/', views.enviarMail, name='mail'),
     path('quienessomos/', views.quienessomos, name='somos'),
     path('proyectos/', views.proyectos, name='proyectos'),
@@ -24,4 +25,6 @@ urlpatterns = [
     path('merendero/', views.merendero, name='merendero'),
     path('objetivos/', views.objetivos, name='objetivos'),
     path('radio/', views.radio, name='radio'),
+    path('religion', views.religion, name='religion'),
+    path('likes/<int:pk>',views.post_likes, name='likes'),
 ]

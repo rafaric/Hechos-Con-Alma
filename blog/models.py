@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -22,7 +23,7 @@ class Post(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     categoria = models.TextField(max_length=100, default='General')
-    likes = models.ManyToManyField(User, related_name='blog_post')
+    likes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.titulo + ' - ' + self.autor.username
@@ -35,9 +36,9 @@ class Post(models.Model):
         return self.likes.count()
 
 class Suscriptores(models.Model):
-    apellido = models.CharField(max_length=50)
-    nombre = models.CharField(max_length=50)    
-    correo = models.EmailField()
+    apellido = models.CharField(max_length=50, null=False)
+    nombre = models.CharField(max_length=120, null=False)    
+    correo = models.EmailField(max_length=80, null=False)
 
-    def _str_(self):
-        return self.apellido + ', ' + self.nombre + ' (' + self.correo +')'
+    def __str__(self):
+        return self.apellido + ', ' + self.nombre + ' - ' + self.correo
