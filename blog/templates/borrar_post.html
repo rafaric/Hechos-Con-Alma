@@ -1,0 +1,20 @@
+{% extends 'bienvenida.html' %}
+{% block title %} Borrar posteo!!! {% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<h1 style="text-align:center;">Borrar Posteo!!!</h1>
+<br/>
+<br/>
+<div class="form-group">
+<form method="post" class="container">
+    {% csrf_token %}
+    <div style="text-align: center;"><h3>Borrando Posteo: {{ post.titulo }}</h3></div>
+    <div style="text-align: center;"><strong>¿Esta seguro de borrarlo?</strong></div>
+    <br/><br/><br/>
+    <p style="text-align:center"><button type="submit" class="btn btn-danger">Eliminar</button></p>
+</form>
+</div>
+{% else %}
+<h1 style="color: red;">No está permitido.</h1>
+{% endif %}
+{% endblock %}

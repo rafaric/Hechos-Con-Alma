@@ -1,0 +1,25 @@
+{% extends 'bienvenida.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Iniciar Sesion {% endblock %}
+{% block content %}
+<h1 style="text-align:center;">Iniciar Sesion</h1>
+<br/>
+<div class="card text-center" style=" max-width: 60%; margin: 0 auto; padding: auto;">
+    <h5 class="card-header">Cuentas HCA</h5>
+    <div class="card-body"></div>
+        <form method="post" class="container">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+            <p> No estas registrado? Hazlo <a href="{% url 'registro' %}">aquí</a></p>
+        </form>
+    </div>
+  </div>
+  <style>
+    .card-header{
+        background-color: #6cb6b4;
+    }
+</style>
+{% endblock %}
+
+

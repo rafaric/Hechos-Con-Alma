@@ -1,0 +1,20 @@
+{% extends 'bienvenida.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <div class="container">
+    <h1 style="text-align: center;"> NUESTRA HUERTA </h1>
+    <h2> Huerta Agroecológica</h2>
+    <p> Trabajamos en la producción de una huerta agroecológica en el Hogar de Ancianos local.
+        </p>
+    <h3>Finalidad</h3
+    <p>Generar un espacio de participación e integración de ancianos. Donde lo producido será para consumo del mismo hogar y para aportar ayuda a merenderos de la ciudad</p>
+    <h3>Contactos</h3>
+    <p> <span style="text-decoration: underline;"> Encargada: </span> Elsa </p>
+    <p> <span style="text-decoration: underline;"> Colaborador: </span> Rodolfo </p>
+    <p> <span style="text-decoration: underline;"> Otras Consultas: </span> <a href="https://api.whatsapp.com/send?phone=543725406545"> WhatsApp</a></p>
+    <div align="center"><img src="{% static '/blog/images/Huerta.jpeg' %}" width="600">
+    </div>
+</div>
+</body>
+{% endblock %}

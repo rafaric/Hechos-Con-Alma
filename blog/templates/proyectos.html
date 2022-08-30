@@ -1,0 +1,15 @@
+{% extends 'bienvenida.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center;"> NUESTRO PROYECTO </h1>
+    <br>
+    <h2> Objetivos a Largo Plazo</h2>
+    <p> Contar con un edificio propio donde se puedan concentrar todas las actividades llevadas adelante por la fundación. </p>
+    <p> Si querés sumarte a nuestro sueño como voluntario,podes hacerlo en cualquiera de las actividades que están funcionando, o bien también podes colaborar, contribuyendo con una cuota mensual para la construcción del edificio. </p>
+    <div align="center">
+        <img src="{% static '/blog/images/proy1.jpeg' %}" width="400"/>
+        <img src="{% static '/blog/images/proye2.jpeg' %}" width="400"/>
+    </div>
+</div>
+{% endblock %}
