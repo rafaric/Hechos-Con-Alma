@@ -1,5 +1,0 @@
-setx MAILSERVER "smtp.gmail.com"
-setx MAILPORT "587"
-setx MAILFROM "hechosconalmablog@gmail.com"
-setx MAILPASS "rsooofxrvvuertno"
-setx WEBADRESS "WWW.GOOGLE.COM.AR"
