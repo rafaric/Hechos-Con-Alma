@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 import environ
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'withenoise.middleware.WitheNoiseMidddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,7 +133,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
 
     os.path.join(BASE_DIR, 'static'),
@@ -148,3 +150,7 @@ LOGOUT_REDIRECT_URL = 'home'
 SECRETBALLOT_FOR_MODELS = {
     'blog.post': {},
 }
+
+ENVIROMENT = os.getenv('ENVIROMENT', 'local')
+if ENVIROMENT ='production':
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
