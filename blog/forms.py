@@ -1,5 +1,4 @@
-from re import A
-from tkinter import Widget
+
 from django import forms
 
 
