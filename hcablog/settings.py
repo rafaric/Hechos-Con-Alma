@@ -151,6 +151,6 @@ SECRETBALLOT_FOR_MODELS = {
     'blog.post': {},
 }
 
-ENVIROMENT = os.getenv('ENVIROMENT', 'local')
-if ENVIROMENT ='production':
+ENVIRONMENT = os.getenv('ENVIRONMENT', 'local')
+if ENVIRONMENT == 'production':
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
