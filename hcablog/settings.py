@@ -153,5 +153,5 @@ SECRETBALLOT_FOR_MODELS = {
 
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'local')
 if ENVIRONMENT == 'production':
-    ALLOWED_HOSTS = ['127.0.0.1']
+    ALLOWED_HOSTS = ['*']
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
