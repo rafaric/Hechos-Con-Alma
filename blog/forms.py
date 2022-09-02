@@ -1,23 +1,26 @@
-
 from django import forms
 
 
 from .models import Post, Categoria, Suscriptores
 
-choices = Categoria.objects.all().values_list('nombre', 'nombre')
-choice_list = []
-for item in choices:
-    choice_list.append(item)
+# choices = Categoria.objects.all().values_list('nombre', 'nombre')
+# choice_list = []
+# for item in choices:
+#     choice_list.append(item)
 
 class PosteoForm(forms.ModelForm):
+    categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), 
+                                        widget=forms.Select(attrs={'class':'form-control'})     
+                                        )
     class Meta:
         model = Post
         fields = ['titulo', 'contenido', 'imagen','categoria', 'autor']
+
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
-            
+            'imagen': forms.FileInput(attrs={'class': 'form-control'}),
             'contenido': forms.Textarea(attrs={'class':'form-control','cols': 80, 'rows': 5}),
-            'categoria': forms.Select(choices=choice_list, attrs={'class':'form-control'}),
+            # 'categoria': forms.RadioSelect(attrs={'class':'form-control'}),
             'autor': forms.TextInput(attrs={'class': 'form-control','type': 'hidden', 'id': 'autor', 'value': ''}),
             #'autor': forms.Select(attrs={'class': 'form-control'}),
         }
